@@ -1,35 +1,90 @@
-// Animación de flote suave para la tarjeta
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
+// Definimos variables locales (o usamos las globales si ya las tenés)
+:host {
+  --blue-accent: #60a5fa;
+  --emerald-accent: #34d399;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --border-blue-faint: rgba(59, 130, 246, 0.2); 
+  --bg-blue-faint: rgba(59, 130, 246, 0.1);
 }
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
+.wip-container {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem; // p-6
+  margin: 1.5rem; // m-6
+  text-align: center;
 }
 
-.glass-container {
-  position: relative;
-  overflow: hidden;
-  
-  &::after {
-    content: "";
-    position: absolute;
-    top: -100%;
-    left: -100%;
-    width: 300%;
-    height: 300%;
-    background: linear-gradient(
-      45deg,
-      transparent 45%,
-      rgba(59, 130, 246, 0.1) 50%,
-      transparent 55%
-    );
-    animation: scan 5s infinite linear;
+.wip-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  // ---
+  padding: 3rem; 
+  border-radius: 1.5rem;
+  border: 1px solid var(--border-blue-faint);
+  max-width: 32rem;
+  width: 100%;
+}
+
+.icon-wrapper {
+  width: 8rem;
+  height: 8rem;
+  background-color: var(--bg-blue-faint);
+  border-radius: 9999px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 2rem auto; 
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  .code-icon {
+    width: 4rem;
+    height: 4rem;
+    color: var(--blue-accent);
   }
 }
 
-@keyframes scan {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-20%, -20%) rotate(30deg); }
+.wip-title {
+  font-size: clamp(2rem, 5vw, 2.25rem); 
+  font-weight: 900;
+  color: white;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  font-style: italic;
+
+  .highlight {
+    background: linear-gradient(to right, var(--blue-accent), var(--emerald-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+.btn-back {
+  color: var(--blue-accent);
+  font-weight: 700;
+  transition: color 0.3s ease; 
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+
+  &:hover {
+    color: white;
+  }
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .5; }
 }
