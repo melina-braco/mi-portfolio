@@ -1,90 +1,125 @@
-// Definimos variables locales (o usamos las globales si ya las tenés)
 :host {
-  --blue-accent: #60a5fa;
-  --emerald-accent: #34d399;
-  --glass-bg: rgba(255, 255, 255, 0.03);
-  --border-blue-faint: rgba(59, 130, 246, 0.2); 
-  --bg-blue-faint: rgba(59, 130, 246, 0.1);
+  --code-blue: #60a5fa;
+  --code-emerald: #34d399;
+  --code-purple: #a855f7;
 }
 
 .wip-container {
-  min-height: 60vh;
+  min-height: 80vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 1.5rem;
-  margin: 3rem; 
-  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
 .wip-card {
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  // ---
-  padding: 3rem; 
-  border-radius: 1.5rem;
-  border: 1px solid var(--border-blue-faint);
-  max-width: 32rem;
-  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: clamp(2rem, 5vw, 4rem);
+  border-radius: 2.5rem;
+  text-align: center;
+  max-width: 500px;
+  width: 90%;
+  z-index: 10;
 }
 
-.icon-wrapper {
-  width: 8rem;
-  height: 8rem;
-  background-color: var(--bg-blue-faint);
-  border-radius: 9999px; 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 2rem auto; 
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+// Ventana de código
+.code-window {
+  background: #0f172a; // Fondo oscuro tipo VSCode
+  border-radius: 1rem;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: left;
+}
 
-  .code-icon {
-    width: 4rem;
-    height: 4rem;
-    color: var(--blue-accent);
+.window-header {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 1.25rem;
+  .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    &.red { background: #ef4444; }
+    &.yellow { background: #f59e0b; }
+    &.green { background: #10b981; }
   }
 }
 
+// Líneas de código animadas
+.line {
+  height: 6px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; height: 100%; width: 0;
+    animation: typeLines 3s infinite;
+  }
+}
+
+.line-1 { width: 80%; &::after { background: var(--code-blue); animation-delay: 0s; } }
+.line-2 { width: 60%; &::after { background: var(--code-purple); animation-delay: 0.5s; } }
+.line-3 { width: 90%; &::after { background: var(--code-emerald); animation-delay: 1s; } }
+.line-4 { width: 40%; &::after { background: var(--code-blue); animation-delay: 1.5s; } }
+
+@keyframes typeLines {
+  0% { width: 0; }
+  40%, 60% { width: 100%; }
+  100% { width: 0; }
+}
+
 .wip-title {
-  font-size: clamp(2rem, 5vw, 2.25rem); 
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
   font-weight: 900;
   color: white;
-  margin-bottom: 1.5rem;
-  letter-spacing: -0.05em;
   text-transform: uppercase;
   font-style: italic;
-
+  letter-spacing: -0.05em;
+  
   .highlight {
-    background: linear-gradient(to right, var(--blue-accent), var(--emerald-accent));
+    background: linear-gradient(to right, #60a5fa, #34d399);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
   }
 }
 
-.btn-back {
-  color: var(--blue-accent);
-  font-weight: 700;
-  transition: color 0.3s ease; 
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  text-decoration: none;
-
-  &:hover {
-    color: white;
-  }
-
-  svg {
-    width: 1rem;
-    height: 1rem;
-  }
+.wip-subtitle {
+  color: #64748b;
+  margin: 1rem 0 2rem;
+  font-size: 0.9rem;
 }
 
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: .5; }
+// Reutilizamos tu botón "Volver" con el efecto que nos gustó
+.btn-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  color: #94a3b8;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-3px) scale(1.05);
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    
+    svg { transform: translateX(-3px); }
+  }
+
+  svg { width: 1rem; height: 1rem; transition: transform 0.3s; }
 }
