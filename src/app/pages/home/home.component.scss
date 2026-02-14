@@ -1,0 +1,143 @@
+// 1. Configuración de Tokens (Variables)
+:host {
+  --blue-primary: #3b82f6;
+  --blue-accent: #60a5fa;
+  --emerald-accent: #10b981;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --text-slate: #64748b;
+}
+
+// 2. Layout & Fondos
+.bg-glow {
+  position: absolute;
+  width: 24rem;
+  height: 24rem;
+  filter: blur(120px);
+  border-radius: 50%;
+  opacity: 0.2;
+  z-index: -10;
+  pointer-events: none;
+
+  &.blue { top: 0; right: 0; background: var(--blue-primary); }
+  &.emerald { bottom: 0; left: 0; background: var(--emerald-accent); }
+}
+
+// 3. Componentes Hero
+.github-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 3rem;
+  margin-bottom: 2rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--blue-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  transition: all 0.3s ease;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--blue-accent);
+    box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.1);
+    svg { transform: scale(1.25) rotate(12deg); }
+  }
+
+  svg { width: 1.25rem; height: 1.25rem; fill: currentColor; transition: transform 0.3s; }
+}
+
+.hero-title {
+  font-size: clamp(3rem, 10vw, 6rem);
+  font-weight: 900;
+  color: white;
+  line-height: 1.1;
+  margin-bottom: 2rem;
+  letter-spacing: -0.05em;
+
+  span {
+    background: linear-gradient(to right, var(--blue-accent), #34d399);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: clamp(0.5rem, 2vw, 1.5rem);
+  margin-top: 1.5rem;
+}
+
+.btn-hero {
+  font-size: clamp(0.7rem, 2.5vw, 1rem);
+  padding: clamp(0.75rem, 2vw, 1rem) clamp(1rem, 4vw, 2rem);
+  border-radius: 1rem;
+  font-weight: 700;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+  cursor: pointer;
+
+  &.primary {
+    background: white;
+    color: #0f172a;
+    &:hover { transform: scale(1.05); background: #f8fafc; }
+  }
+
+  &.secondary {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    color: white;
+    &:hover { background: rgba(255, 255, 255, 0.08); }
+  }
+}
+
+// 4. Sección de Stats (Grid de 4 columnas)
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(0.25rem, 1.5vw, 1.5rem);
+  max-width: 1200px;
+  margin: 3rem auto 0;
+  width: 100%;
+}
+
+.stat-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: clamp(1rem, 2vw, 2rem);
+  padding: clamp(0.5rem, 1.5vw, 1.5rem);
+  text-align: center;
+  transition: all 0.3s ease;
+  min-width: 0;
+
+  &:hover {
+    transform: translateY(-5px);
+    border-color: var(--blue-accent);
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .stat-value {
+    color: white;
+    font-weight: 800;
+    font-size: clamp(0.875rem, 2.5vw, 1.875rem);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .stat-label {
+    color: var(--text-slate);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: clamp(0.5rem, 1vw, 0.75rem);
+    letter-spacing: 0.05em;
+  }
+}
