@@ -1,16 +1,27 @@
-<header>
-  <nav>
-    <strong>Tu Nombre - Dev</strong>
-  </nav>
-</header>
-
-<main style="padding: 2rem; font-family: sans-serif;">
-  <h1>Hola, soy Desarrolladora Frontend SSR</h1>
-  <p>Especializada en Angular y TypeScript. Pronto verás aquí mis mejores proyectos.</p>
+<div class="text-slate-200 selection:bg-blue-500/30">
   
-  <section style="margin-top: 2rem;">
-    <h2>¿Buscás una web profesional?</h2>
-    <p>Ayudo a emprendedores y empresas a posicionarse en Google.</p>
-    <button>Contactame</button>
-  </section>
-</main>
+  <nav class="fixed top-0 w-full z-50 px-6 py-4">
+    <div class="max-w-6xl mx-auto glass rounded-2xl px-6 py-3 flex justify-between items-center">
+      <div class="text-xl font-black tracking-tighter text-white">
+        MBRACO<span class="text-blue-500">.</span>WEB
+      </div>
+      
+      <div class="hidden md:flex gap-8 text-sm font-medium">
+        <a routerLink="/experiencia" class="hover:text-blue-400 transition cursor-pointer">Experiencia</a>
+      </div>
+      
+      <button routerLink="/contacto" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-xl text-xs font-bold transition">
+        CONTACTO
+      </button>
+    </div>
+  </nav>
+
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="py-20 text-center text-slate-600 border-t border-white/5">
+    <p class="text-sm">© 2026 Melina Braconaro — Crafted with Angular & SSR</p>
+  </footer>
+</div>
+
