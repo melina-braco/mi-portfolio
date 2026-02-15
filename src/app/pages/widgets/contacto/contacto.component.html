@@ -1,38 +1,41 @@
 <section class="contact-container">
-  <div class="contact-card">
-    <h2 class="hero-title !text-4xl mb-6">Get in <span>Touch</span></h2>
+  <div class="">
+    <h2 class="contact-title">
+      Dejanos tu consulta <br>
+    </h2>
 
-    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
-      
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
       <div class="form-group">
-        <label for="email">Email</label>
-        <input id="email" type="email" formControlName="email" 
-               [class.invalid]="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
-               placeholder="tu@email.com">
-        @if (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
-          <span class="error-hint">Email requerido</span>
-        }
+        <label for="email">Email de contacto</label>
+        <input id="email" type="email" formControlName="email"
+          [class.invalid]="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
+          placeholder="ejemplo@correo.com">
       </div>
 
       <div class="form-group">
-        <label for="subject">Asunto</label>
-        <input id="subject" type="text" formControlName="subject" placeholder="Ej: Nueva Web Corporativa">
+        <label for="subject">¿En qué puedo ayudarte?</label>
+        <input id="subject" type="text" formControlName="subject" placeholder="Ej: Desarrollo de App Angular">
       </div>
 
       <div class="form-group">
         <label for="message">Mensaje</label>
-        <textarea id="message" formControlName="message" placeholder="Contame sobre tu proyecto..."></textarea>
+        <textarea id="message" formControlName="message" placeholder="Contame un poco sobre tu idea..."></textarea>
       </div>
 
       <button type="submit" class="btn-submit" [disabled]="contactForm.invalid || status === 'SENDING'">
-        {{ status === 'SENDING' ? 'Enviando...' : 'Enviar Mensaje' }}
+        @if (status === 'SENDING') {
+        <span>Enviando propuesta...</span>
+        } @else {
+        <span>Enviar Mensaje</span>
+        }
       </button>
 
       @if (status === 'SUCCESS') {
-        <p class="text-emerald-400 text-center mt-4 text-sm font-bold">¡Mensaje enviado con éxito!</p>
+      <p class="feedback-msg success">¡Mensaje enviado! Te responderé lo antes posible.</p>
       }
+      
       @if (status === 'ERROR') {
-        <p class="text-red-400 text-center mt-4 text-sm font-bold">Ups, algo falló. Intentá de nuevo.</p>
+      <p class="feedback-msg error">Hubo un problema. Por favor, reintentá.</p>
       }
     </form>
   </div>
