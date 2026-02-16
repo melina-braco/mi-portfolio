@@ -16,7 +16,7 @@ export class AppComponent {
   // Inyectamos 'location' para poder usar el historial del navegador
   constructor(
     private router: Router, 
-    private location: Location
+    private location: Location,
   ) {
     this.initRouterEvents();
   }

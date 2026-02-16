@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./contacto.component.scss']
 })
 export class ContactoComponent implements OnInit {
-  contactForm!: FormGroup; 
+  contactForm!: FormGroup; // Tipo correcto
   status: 'IDLE' | 'SENDING' | 'SUCCESS' | 'ERROR' = 'IDLE';
 
   constructor(
@@ -25,28 +25,39 @@ export class ContactoComponent implements OnInit {
 
   initForm() {
     this.contactForm = this.fb.group({
-      email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
+      email: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-z]{2,4}$")]],
       subject: ['', [Validators.required, Validators.minLength(3)]],
       message: ['', [Validators.required, Validators.minLength(5)]],
     });
   }
 
   onSubmit() {
-    if (this.contactForm.invalid) {
-      console.log('Formulario inválido:', this.contactForm.controls);
-      return;
-    }
+    // Si el form es inválido, no hace nada (el botón debería estar disabled)
+    if (this.contactForm.invalid) return;
 
     this.status = 'SENDING';
-    const endpoint = 'https://formspree.io/f/tu_id_aca'; 
 
-    this.http.post(endpoint, this.contactForm.value).subscribe({
+    const payload = {
+      service_id: 'service_gxj8qb3',
+      template_id: 'template_h3g10mu',
+      user_id: 'up5h2g1irw8cmIr3X',
+      template_params: {
+        name: this.contactForm.value.email, // El template  {{name}}
+        title: this.contactForm.value.subject, // El template  {{title}}
+        message: this.contactForm.value.message // Este  {{message}}
+      }
+    };
+
+   // contacto.component.ts
+  this.http.post('https://api.emailjs.com/api/v1.0/email/send', payload, { responseType: 'text' }) 
+    .subscribe({
       next: () => {
+        console.log('Ahora sí entra por acá!');
         this.status = 'SUCCESS';
         this.contactForm.reset();
-        setTimeout(() => this.status = 'IDLE', 5000);
       },
-      error: () => {
+      error: (err) => {
+        console.error(err);
         this.status = 'ERROR';
       }
     });
