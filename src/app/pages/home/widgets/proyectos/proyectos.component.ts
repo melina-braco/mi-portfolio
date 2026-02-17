@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { WorkingInProgressComponent } from '../../../../working-in-progress/working-in-progress.component';
+import { WorkingInProgressComponent } from '../../../../../shared/working-in-progress/working-in-progress.component';
 
 @Component({
   selector: 'app-proyectos',
