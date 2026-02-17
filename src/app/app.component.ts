@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core'; // Agregamos inject y OnInit
 import { Router, NavigationEnd, RouterLink, RouterOutlet } from '@angular/router';
 import { Location, CommonModule } from '@angular/common';
 import { filter } from 'rxjs/operators';
+import { ChatbotService } from './chatboot.service';
 
 @Component({
   selector: 'app-root',
@@ -10,14 +11,16 @@ import { filter } from 'rxjs/operators';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   isHome = true;
+  
+  // Usamos inject() para evitar el error TS-992003
+  private chatbotService = inject(ChatbotService);
+  private router = inject(Router);
+  private location = inject(Location);
 
-  // Inyectamos 'location' para poder usar el historial del navegador
-  constructor(
-    private router: Router, 
-    private location: Location,
-  ) {
+  ngOnInit() {
+    this.chatbotService.initChatbot();
     this.initRouterEvents();
   }
 
@@ -25,13 +28,11 @@ export class AppComponent {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: any) => {
-      // Usamos urlAfterRedirects porque es la URL final real
       const currentUrl = event.urlAfterRedirects;
       this.isHome = currentUrl === '/' || currentUrl === '/home';
     });
   }
 
-  // Método para el botón "Volver"
   goBack(): void {
     this.location.back();
   }
