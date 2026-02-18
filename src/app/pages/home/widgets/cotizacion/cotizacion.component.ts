@@ -19,6 +19,7 @@ export class CotizacionComponent implements OnInit {
   readonly EBOOK_SECTION_PRICE = 25000;
   readonly BOOKING_PRICE = 30000;
   readonly CHATBOT_PRICE = 20000;
+  readonly ANALITYCS_DASHBOAORD = 10000;
 
   // Nuevas constantes de mantenimiento extra
   readonly MAINTENANCE_PER_SECTION = 5000; // <--- Lo que pediste
@@ -38,6 +39,7 @@ export class CotizacionComponent implements OnInit {
       ebookSystem: [false],
       bookingSystem: [false],
       guidedChatbot: [false],
+      analyticsDashboard: [false]
     });
 
     this.quoteForm.valueChanges.subscribe(() => this.calculateTotal());
@@ -62,6 +64,7 @@ export class CotizacionComponent implements OnInit {
     if (v.ebookSystem) oneTime += this.EBOOK_SECTION_PRICE;
     if (v.bookingSystem) oneTime += this.BOOKING_PRICE;
     if (v.guidedChatbot) oneTime += this.CHATBOT_PRICE;
+    if (v.guidedChatbot) oneTime += this.ANALITYCS_DASHBOAORD;
 
     // Lógica Mensual (Mantenimiento)
     if (v.emailService) monthly += 15000;
