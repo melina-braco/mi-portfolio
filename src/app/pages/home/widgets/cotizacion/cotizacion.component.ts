@@ -45,6 +45,7 @@ export class CotizacionComponent implements OnInit {
     this.quoteForm.valueChanges.subscribe(() => this.calculateTotal());
   
     this.quoteForm.get('guidedChatbot')?.disable();
+    this.quoteForm.get('ebookSystem')?.disable();
   }
 
   updateSections(val: number) {
