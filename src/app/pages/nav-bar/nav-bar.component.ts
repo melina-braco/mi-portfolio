@@ -14,12 +14,12 @@ import { ChatbotService } from '../../chatboot.service';
 export class NavBarComponent implements OnInit { // Agregado implements OnInit
   isHome = true;
 
-  private chatbotService = inject(ChatbotService);
+  //private chatbotService = inject(ChatbotService);
   private router = inject(Router);
   private location = inject(Location);
 
   ngOnInit() {
-    this.chatbotService.initChatbot();
+    //this.chatbotService.initChatbot();
     this.initRouterEvents();
   }
 
