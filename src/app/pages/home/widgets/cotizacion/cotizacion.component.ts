@@ -29,6 +29,8 @@ export class CotizacionComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
+    // pasa a init fomr el formualrio
+
     this.quoteForm = this.fb.group({
       extraSections: [0],
       emailService: [false],
@@ -39,6 +41,8 @@ export class CotizacionComponent implements OnInit {
     });
 
     this.quoteForm.valueChanges.subscribe(() => this.calculateTotal());
+  
+    this.quoteForm.get('guidedChatbot')?.disable();
   }
 
   updateSections(val: number) {

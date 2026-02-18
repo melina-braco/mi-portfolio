@@ -161,3 +161,50 @@
     &:hover { background: #f8fafc; transform: scale(1.02); }
   }
 }
+
+.feature-disabled {
+  position: relative;
+  filter: grayscale(1); // Hace que todo se vea gris
+  opacity: 0.5;         // Le da el efecto de estar desactivado
+  pointer-events: none; // Evita que el usuario haga clic
+  cursor: not-allowed;
+
+  .badge-soon {
+    position: absolute;
+    top: -10px;
+    right: -5px;
+    background: #475569; // Un gris pizarra para que no resalte tanto como el azul
+    color: white;
+    font-size: 0.6rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    z-index: 10;
+  }
+}
+
+.check-item.disabled {
+  pointer-events: none; // Evita cualquier interacción
+  filter: grayscale(1); // Grisa todo el contenido
+  opacity: 0.6;         // Le da el tono de desactivado
+  cursor: not-allowed;
+
+  .label-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .soon-badge {
+    background: rgba(255, 255, 255, 0.1);
+    color: #94a3b8;
+    font-size: 0.6rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: 800;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
