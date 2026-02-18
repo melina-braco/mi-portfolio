@@ -208,3 +208,49 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
 }
+
+.price-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  min-width: fit-content;
+
+  .price-tag { 
+    color: #60a5fa; 
+    font-weight: 800; 
+    font-size: 0.85rem; 
+    background: rgba(59, 130, 246, 0.1);
+    padding: 0.3rem 0.8rem;
+    border-radius: 1rem;
+    
+    small {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-left: 2px;
+    }
+  }
+
+  .monthly-tag {
+    font-size: 0.75rem;
+    color: #10b981; // Verde para el mantenimiento mensual
+    font-weight: 700;
+    margin-right: 5px;
+  }
+}
+
+.label-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.2rem;
+}
+
+.description {
+  strong {
+    color: white;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(37, 99, 235, 0.3); // Subrayado sutil azul
+  }
+}

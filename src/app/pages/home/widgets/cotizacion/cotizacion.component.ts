@@ -12,17 +12,18 @@ import { CommonModule } from '@angular/common';
 export class CotizacionComponent implements OnInit {
   quoteForm!: FormGroup;
   
-  // Precios base
-  readonly BASE_PRICE = 60000;
+  readonly BASE_PRICE = 85000; 
   readonly BASE_MAINTENANCE = 50000;
-  readonly EXTRA_SECTION_PRICE = 15000;
-  readonly EBOOK_SECTION_PRICE = 25000;
-  readonly BOOKING_PRICE = 30000;
-  readonly CHATBOT_PRICE = 20000;
-  readonly ANALITYCS_DASHBOAORD = 10000;
 
-  // Nuevas constantes de mantenimiento extra
-  readonly MAINTENANCE_PER_SECTION = 5000; // <--- Lo que pediste
+  readonly EXTRA_SECTION_PRICE = 15000;
+  readonly MAINTENANCE_PER_SECTION = 5000;
+
+  readonly EBOOK_SECTION_PRICE = 25000;
+  readonly EMAIL_SETUP_PRICE = 10000;
+  readonly ANALYTICS_SETUP_PRICE = 25000;
+
+  readonly EMAIL_MONTHLY_PRICE = 15000;
+  readonly ANALYTICS_MONTHLY_PRICE = 10000;
 
   totalOneTime = this.BASE_PRICE;
   totalMonthly = this.BASE_MAINTENANCE;
@@ -30,12 +31,9 @@ export class CotizacionComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
-    // pasa a init fomr el formualrio
-
     this.quoteForm = this.fb.group({
       extraSections: [0],
       emailService: [false],
-      seoOptimization: [false],
       ebookSystem: [false],
       bookingSystem: [false],
       guidedChatbot: [false],
@@ -43,9 +41,8 @@ export class CotizacionComponent implements OnInit {
     });
 
     this.quoteForm.valueChanges.subscribe(() => this.calculateTotal());
-  
     this.quoteForm.get('guidedChatbot')?.disable();
-    this.quoteForm.get('ebookSystem')?.disable();
+    this.quoteForm.get('bookingSystem')?.disable();
   }
 
   updateSections(val: number) {
@@ -59,19 +56,15 @@ export class CotizacionComponent implements OnInit {
     let oneTime = this.BASE_PRICE;
     let monthly = this.BASE_MAINTENANCE;
 
-    // Lógica de Pago Único
+    // Lógica de Pago Único (Setup)
     oneTime += (v.extraSections * this.EXTRA_SECTION_PRICE);
-    if (v.seoOptimization) oneTime += 15000;
     if (v.ebookSystem) oneTime += this.EBOOK_SECTION_PRICE;
-    if (v.bookingSystem) oneTime += this.BOOKING_PRICE;
-    if (v.guidedChatbot) oneTime += this.CHATBOT_PRICE;
-    if (v.guidedChatbot) oneTime += this.ANALITYCS_DASHBOAORD;
+    if (v.emailService) oneTime += this.EMAIL_SETUP_PRICE;
+    if (v.analyticsDashboard) oneTime += this.ANALYTICS_SETUP_PRICE;
 
     // Lógica Mensual (Mantenimiento)
-    if (v.emailService) monthly += 15000;
-    if (v.bookingSystem) monthly += 10000;
-
-    // Sumamos el mantenimiento por cada sección extra
+    if (v.emailService) monthly += this.EMAIL_MONTHLY_PRICE;
+    if (v.analyticsDashboard) monthly += this.ANALYTICS_MONTHLY_PRICE;
     monthly += (v.extraSections * this.MAINTENANCE_PER_SECTION);
 
     this.totalOneTime = oneTime;

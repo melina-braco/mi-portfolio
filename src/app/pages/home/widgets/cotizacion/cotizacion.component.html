@@ -1,21 +1,23 @@
 <section class="quote-container">
   <div class="quote-grid">
-    
+
     <div class="options-side">
       <h1 class="title">Configurá tu <span>Solución Digital</span></h1>
       <p class="description">
-        Diseño exclusivo y optmizado en <strong>Angular 17</strong>, 
-  
-        Partimos de una base de 3 secciones, diseño responsive, hosting y redes incluidas. 
-        Personalizá las funcionalidades extra según tu necesidad.
+        Diseño exclusivo en <strong>Angular 17</strong> con <strong>Posicionamiento SEO en Google incluido</strong> para
+        que tu marca sea visible desde el primer día.
+        <br><br>
+        Partimos de una base de 3 secciones, experiencia optimizada para <strong>PC, Mobile y Tablet</strong>, hosting y
+        redes incluidas.
       </p>
 
       <form [formGroup]="quoteForm" class="form-styles">
-        
+
         <div class="option-group">
           <h3>Estructura del sitio</h3>
           <div class="numeric-control">
-            <button type="button" (click)="updateSections(-1)" [disabled]="quoteForm.value.extraSections <= 0">-</button>
+            <button type="button" (click)="updateSections(-1)"
+              [disabled]="quoteForm.value.extraSections <= 0">-</button>
             <span class="count">{{ quoteForm.value.extraSections }} secciones extra</span>
             <button type="button" (click)="updateSections(1)">+</button>
           </div>
@@ -23,7 +25,7 @@
 
         <div class="checkbox-group">
           <h3>Potenciá tu Web</h3>
-          
+
           <label class="check-item">
             <input type="checkbox" formControlName="ebookSystem">
             <div class="check-content">
@@ -42,8 +44,23 @@
                 <span class="label">Panel de Estadísticas & Métricas</span>
                 <p class="sub-label">Visualizá visitas, clics y comportamiento de usuarios en tiempo real.</p>
               </div>
-              <div class="price-badge">
-                <span class="price-tag">+$25k</span>
+              <div class="price-container">
+                <span class="price-tag">+$25k <small>setup</small></span>
+                <span class="monthly-tag">+$10k/mes</span>
+              </div>
+            </div>
+          </label>
+
+          <label class="check-item">
+            <input type="checkbox" formControlName="emailService">
+            <div class="check-content">
+              <div class="texts">
+                <span class="label">Email Marketing + Templates</span>
+                <p class="sub-label">Automatización de respuestas y diseño de correos pro.</p>
+              </div>
+              <div class="price-container">
+                <span class="price-tag">+$10k <small>setup</small></span>
+                <span class="monthly-tag">+$15k/mes</span>
               </div>
             </div>
           </label>
@@ -52,8 +69,10 @@
             <input type="checkbox" formControlName="bookingSystem">
             <div class="check-content">
               <div class="texts">
-                <span class="label">Gestión de Turnos Online</span>
-                <span class="soon-badge">Próximamente</span>
+                <div class="label-wrapper">
+                  <span class="label">Gestión de Turnos Online</span>
+                  <span class="soon-badge">Próximamente</span>
+                </div>
                 <p class="sub-label">Agenda automatizada sincronizada con Google Calendar.</p>
               </div>
               <span class="price-tag">+$30k</span>
@@ -61,7 +80,7 @@
           </label>
 
           <label class="check-item disabled">
-            <input type="checkbox" formControlName="guidedChatbot" >
+            <input type="checkbox" formControlName="guidedChatbot">
             <div class="check-content">
               <div class="texts">
                 <div class="label-wrapper">
@@ -73,28 +92,6 @@
               <span class="price-tag">+$20k</span>
             </div>
           </label>
-
-          <label class="check-item">
-            <input type="checkbox" formControlName="seoOptimization">
-            <div class="check-content">
-              <div class="texts">
-                <span class="label">SEO & Indexación en Google</span>
-                <p class="sub-label">Aparecé en los resultados de búsqueda locales.</p>
-              </div>
-              <span class="price-tag">+$15k</span>
-            </div>
-          </label>
-
-          <label class="check-item">
-            <input type="checkbox" formControlName="emailService">
-            <div class="check-content">
-              <div class="texts">
-                <span class="label">Email Marketing + Templates</span>
-                <p class="sub-label">Automatización de respuestas y diseño de correos pro.</p>
-              </div>
-              <span class="price-tag">+$15k/mes</span>
-            </div>
-          </label>
         </div>
       </form>
     </div>
@@ -102,7 +99,7 @@
     <div class="summary-side">
       <div class="summary-card">
         <div class="badge-status">Tu Presupuesto</div>
-        
+
         <div class="price-block">
           <span class="label">Inversión Inicial</span>
           <span class="value">${{ totalOneTime | number:'1.0-0' }}</span>
@@ -112,17 +109,16 @@
           <span class="label">Mantenimiento Mensual</span>
           <span class="value highlight">${{ totalMonthly | number:'1.0-0' }}</span>
         </div>
-        
+
         <ul class="features-included">
+          <li>✓ <strong>SEO & Indexación Google incluida</strong></li>
+          <li>✓ <strong>Optimización PC, Mobile y Tablet</strong></li>
           <li>✓ Hosting & Dominio SSL incluidos</li>
-          <li>✓ Diseño Full Responsive</li>
-          <li>✓ Enlace a Redes (IG, YT, TikTok)</li>
           <li>✓ Soporte técnico 24/7</li>
         </ul>
 
         <button class="btn-contact">Solicitar Presupuesto</button>
       </div>
     </div>
-
   </div>
 </section>

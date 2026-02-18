@@ -144,3 +144,47 @@
   50% { opacity: 0.4; transform: scale(1.2); }
   100% { opacity: 1; transform: scale(1); }
 }
+
+.quality-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+
+  .quality-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+
+    .score {
+      font-weight: 800;
+      font-size: 0.9rem;
+      color: #10b981; // Verde (Best Practices 96)
+      background: rgba(16, 185, 129, 0.1);
+      padding: 4px 8px;
+      border-radius: 6px;
+      min-width: 35px;
+      text-align: center;
+
+      &.gold { 
+        color: #3b82f6; // Azul (SEO/Accessibility 100)
+        background: rgba(59, 130, 246, 0.1); 
+      }
+      &.orange { 
+        color: #f59e0b; // Naranja (Performance 82)
+        background: rgba(245, 158, 11, 0.1); 
+      }
+    }
+
+    .desc {
+      font-size: 0.75rem;
+      color: #64748b;
+      line-height: 1.2;
+      strong { color: #cbd5e1; display: block; font-size: 0.7rem; text-transform: uppercase; }
+    }
+  }
+}
